@@ -2,7 +2,7 @@ import { memo } from "react";
 import type { KcContext } from "./kcContext";
 import { KcApp as KcAppBase, defaultKcProps } from "keycloakify";
 import { Login } from "./Login";
-//import { LogoutConfirm } from "./LogoutConfirm";
+import { LogoutConfirm } from "./LogoutConfirm";
 import { Register } from "./Register";
 import { makeStyles } from "makeStyles";
 
@@ -24,11 +24,12 @@ export const KcApp = memo((props: Props) => {
       classes.kcFormCardClass,
     ],
   };
-
   switch (kcContext.pageId) {
     case "login.ftl":
       return <Login {...{ kcContext, ...kcProps }} />;
-    //  case "logout-confirm.ftl":
+    case "logout-confirm.ftl":
+      return <LogoutConfirm {...{ kcContext, ...kcProps }} />;
+
     //  return <LogoutConfirm {...{ kcContext, ...kcProps }} />;
     case "register.ftl":
       return <Register {...{ kcContext, ...kcProps }} />;

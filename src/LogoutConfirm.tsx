@@ -1,11 +1,9 @@
-import { useState, memo } from "react";
-import { useConstCallback } from "powerhooks/useConstCallback";
-import type { FormEventHandler } from "react";
+import { memo } from "react";
 import { getMsg, KcContextBase, KcProps } from "keycloakify";
 import { useCssAndCx } from "tss-react";
 import { Template } from "./Template";
 
-export const Login = memo(
+export const LogoutConfirm = memo(
   ({
     kcContext,
     ...props
@@ -44,25 +42,21 @@ export const Login = memo(
                     id="kc-form-buttons"
                     className={cx(props.kcFormGroupClass)}
                   >
-                    <input
+                    <button
                       tabIndex={4}
-                      className={cx(
-                        props.kcButtonClass,
-                        props.kcButtonPrimaryClass,
-                        props.kcButtonBlockClass,
-                        props.kcButtonLargeClass
-                      )}
+                      type="submit"
+                      className="fr-btn fr-btn--lg"
                       name="confirmLogout"
                       id="kc-logout"
-                      type="submit"
-                      value={msgStr("doLogout")}
-                    />
+                    >
+                      {msgStr("doLogout")}
+                    </button>
                   </div>
                 </div>
               </form>
               <div id="kc-info-message">
                 {!logoutConfirm.skipLink && client.baseUrl && (
-                  <p>
+                  <p style={{ marginTop: 20 }}>
                     <a
                       href={client.baseUrl}
                       dangerouslySetInnerHTML={{

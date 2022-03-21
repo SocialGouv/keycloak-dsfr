@@ -2,7 +2,6 @@ import { useState, memo, Fragment } from "react";
 import { useConstCallback } from "powerhooks/useConstCallback";
 import type { FormEventHandler } from "react";
 import { KcContextBase, KcProps, getMsg } from "keycloakify";
-import { useCssAndCx } from "tss-react";
 import { Template } from "./Template";
 
 export const Login = memo(
