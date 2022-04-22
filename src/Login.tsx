@@ -112,29 +112,31 @@ export const Login = memo(
                   <div id="kc-form-options">
                     {realm.rememberMe && !usernameEditDisabled && (
                       <div className="fr-checkbox-group">
-                        <label className="fr-label">
-                          <input
-                            tabIndex={3}
-                            id="rememberMe"
-                            name="rememberMe"
-                            type="checkbox"
-                            {...(login.rememberMe
-                              ? {
-                                  checked: true,
-                                }
-                              : {})}
-                          />
+                        <input
+                          tabIndex={3}
+                          id="rememberMe"
+                          name="rememberMe"
+                          type="checkbox"
+                          {...(login.rememberMe
+                            ? {
+                                checked: true,
+                              }
+                            : {})}
+                        />
+                        <label className="fr-label" htmlFor="rememberMe">
                           {msg("rememberMe")}
                         </label>
                       </div>
                     )}
                   </div>
                   {realm.resetPasswordAllowed && (
-                    <label className="fr-label">
-                      <a tabIndex={5} href={url.loginResetCredentialsUrl}>
-                        {msg("doForgotPassword")}
-                      </a>
-                    </label>
+                    <div className="fr-mt-3w">
+                      <label className="fr-label">
+                        <a tabIndex={5} href={url.loginResetCredentialsUrl}>
+                          {msg("doForgotPassword")}
+                        </a>
+                      </label>
+                    </div>
                   )}
                 </div>
                 <div id="kc-form-buttons" className="fr-input-group field">
