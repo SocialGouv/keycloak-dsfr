@@ -2,10 +2,10 @@ name: ci
 on:
   push:
     branches:
-      - main
+      - dsfr
   pull_request:
     branches:
-      - main
+      - dsfr
 
 jobs:
 
@@ -69,53 +69,6 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - run: npx -y -p gh-pages@3.1.0 gh-pages -d build -u "github-actions-bot <actions@github.com>"
-
-  docker:
-    needs: 
-      - check_if_version_upgraded
-      - build
-    runs-on: ubuntu-latest
-    # We publish the the docker image only if it's a push on the default branch or if it's a PR from a 
-    # branch (meaning not a PR from a fork). It would be more straightforward to test if secrets.DOCKERHUB_TOKEN is 
-    # defined but GitHub Action don't allow it.
-    if: |
-      github.event_name == 'push' || 
-      github.event.pull_request.head.repo.owner.login == github.event.pull_request.base.repo.owner.login 
-    steps:
-      - uses: actions/checkout@v2
-      - uses: docker/setup-qemu-action@v1
-      - uses: docker/setup-buildx-action@v1
-      - uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Computing Docker image tags
-        id: step1
-        env: 
-          IS_UPGRADED_VERSION: ${{ needs.check_if_version_upgraded.outputs.is_upgraded_version }}
-          TO_VERSION: ${{ needs.check_if_version_upgraded.outputs.to_version }}
-        run: |
-          OUT=$GITHUB_REPOSITORY:$(
-          [ "$GITHUB_EVENT_NAME" == "pull_request" ] &&
-            echo "$GITHUB_HEAD_REF" ||
-            echo "${GITHUB_REF#refs/*/}"
-          )
-          if [ "$IS_UPGRADED_VERSION" = "true" ]; then
-            OUT=$OUT,$GITHUB_REPOSITORY:$TO_VERSION,$GITHUB_REPOSITORY:latest
-          fi
-          OUT=$(echo "$OUT" | awk '{print tolower($0)}') 
-          echo ::set-output name=docker_tags::$OUT
-      - uses: actions/download-artifact@v2
-        with:
-          name: build
-          path: build
-      - run: tar -cvf build.tar ./build
-      - uses: docker/build-push-action@v2
-        with:
-          push: true
-          context: .
-          tags: ${{ steps.step1.outputs.docker_tags }}
-          file: Dockerfile.ci
 
   update_changelog:
     runs-on: ubuntu-latest
