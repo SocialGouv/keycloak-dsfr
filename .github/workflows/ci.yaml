@@ -19,7 +19,7 @@ jobs:
       - uses: bahmutov/npm-install@v1
       #- run: yarn test
       - run: yarn build
-      - run: npx build-keycloak-theme --external-assets
+      - run: npx build-keycloak-theme
       - uses: actions/upload-artifact@v2
         with:
           name: keycloak_theme
