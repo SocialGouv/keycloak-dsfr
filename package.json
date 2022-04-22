@@ -13,12 +13,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "keycloakify": {
-    "extraPages": [
-      "my-extra-page-1.ftl",
-      "my-extra-page-2.ftl"
-    ]
-  },
+  "keycloakify": {},
   "author": "maxgfr",
   "license": "MIT",
   "keywords": [],
