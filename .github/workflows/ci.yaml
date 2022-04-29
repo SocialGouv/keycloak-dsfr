@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: yarn
-      - run: yarn && yarn build
+      - run: yarn build
       - run: yarn keycloak
       - uses: actions/upload-artifact@v2
         with:
