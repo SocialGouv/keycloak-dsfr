@@ -1,8 +1,9 @@
 import { useState, memo } from "react";
 import { useConstCallback } from "powerhooks/useConstCallback";
 import type { FormEventHandler } from "react";
-import { KcContextBase, KcProps, useKcMessage, Template } from "keycloakify";
+import { getMsg, KcContextBase, KcProps } from "keycloakify";
 import { useCssAndCx } from "tss-react";
+import { Template } from "keycloakify/lib/components/Template";
 
 export const Login = memo(
   ({ kcContext, ...props }: { kcContext: KcContextBase.Login } & KcProps) => {
@@ -16,7 +17,7 @@ export const Login = memo(
       registrationDisabled,
     } = kcContext;
 
-    const { msg, msgStr } = useKcMessage();
+    const { msg, msgStr } = getMsg();
 
     const [isLoginButtonDisabled, setIsLoginButtonDisabled] = useState(false);
 

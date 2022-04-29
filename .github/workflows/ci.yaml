@@ -2,10 +2,10 @@ name: ci
 on:
   push:
     branches:
-      - dsfr
+      - main
   pull_request:
     branches:
-      - dsfr
+      - main
 
 jobs:
   build:
