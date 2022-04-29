@@ -1,11 +1,9 @@
 import ReactDOM from "react-dom";
-import { App } from "./App";
-import { kcContext } from "./KcApp/kcContext";
+import "@gouvfr/dsfr/dist/dsfr/dsfr.min.css";
+import { kcContext } from "./kcContext";
 import { KcApp } from "./KcApp";
 
 ReactDOM.render(
-  kcContext === undefined ?
-    <App /> :
-    <KcApp kcContext={kcContext} />,
+  kcContext === undefined ? <div /> : <KcApp kcContext={kcContext} />,
   document.getElementById("root")
 );
