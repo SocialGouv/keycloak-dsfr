@@ -1,7 +1,7 @@
 import { memo } from "react";
-import { Template } from "keycloakify/lib/components/Template";
-import { getMsg, KcProps } from "keycloakify";
+import { KcProps, useKcMessage } from "keycloakify";
 import type { KcContext } from "./kcContext";
+import { Template } from "./Template";
 
 type KcContext_Register = Extract<KcContext, { pageId: "register.ftl" }>;
 
@@ -16,7 +16,7 @@ export const Register = memo(
       recaptchaSiteKey,
     } = kcContext;
 
-    const { msg, msgStr } = getMsg();
+    const { msg, msgStr } = useKcMessage();
 
     console.log(`TODO: Do something with ${kcContext.authorizedMailDomains}`);
 

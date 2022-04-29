@@ -23,20 +23,15 @@ export const KcApp = memo((props: Props) => {
       ...defaultKcProps.kcFormCardClass,
       classes.kcFormCardClass,
     ],
-    kcButtonPrimaryClass: [
-      ...defaultKcProps.kcButtonPrimaryClass,
-      classes.kcButtonPrimaryClass,
-    ],
-    kcInputClass: [...defaultKcProps.kcInputClass, classes.kcInputClass],
   };
 
   switch (kcContext.pageId) {
     case "login.ftl":
-      return <Login {...{ kcContext, ...defaultKcProps }} />;
+      return <Login {...{ kcContext, ...kcProps }} />;
     case "register.ftl":
-      return <Register {...{ kcContext, ...defaultKcProps }} />;
+      return <Register {...{ kcContext, ...kcProps }} />;
     default:
-      return <KcAppBase {...{ kcContext, ...defaultKcProps }} />;
+      return <KcAppBase {...{ kcContext, ...kcProps }} />;
   }
 });
 
@@ -51,44 +46,15 @@ const useStyles = makeStyles({ name: { KcApp } })(theme => ({
       background: theme.colors.background,
     },
     background: `${theme.colors.background}`,
-    "& a": {
-      color: `${theme.colors.textFocus}`,
-    },
-    "& #kc-current-locale-link": {
-      color: `${theme.colors.label}`,
-    },
-    "& label": {
-      fontSize: 14,
-      color: theme.colors.label,
-      fontWeight: "normal",
-    },
-    "& #kc-page-title": {
-      color: theme.colors.primary,
-    },
     "& #kc-header-wrapper": {
       visibility: "hidden",
+    },
+    "& .alert": {
+      background: "#fff",
+      composes: "some-class",
     },
   },
   kcFormCardClass: {
     borderRadius: 10,
-  },
-  kcButtonPrimaryClass: {
-    backgroundColor: "unset",
-    backgroundImage: "unset",
-    borderColor: `${theme.colors.textFocus}`,
-    borderWidth: "2px",
-    borderRadius: `20px`,
-    color: `${theme.colors.textFocus}`,
-    textTransform: "uppercase",
-  },
-  kcInputClass: {
-    borderRadius: "unset",
-    border: "unset",
-    boxShadow: "unset",
-    borderBottom: `1px solid ${theme.colors.textTertiary}`,
-    "&:focus": {
-      borderColor: "unset",
-      borderBottom: `1px solid ${theme.colors.textFocus}`,
-    },
   },
 }));
