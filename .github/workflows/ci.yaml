@@ -13,7 +13,7 @@ jobs:
     if: github.event.head_commit.author.name != 'actions'
     steps:
       - uses: actions/checkout@v3
-      - run: yarn
+      - run: yarn install --frozen-lockfile
       - run: yarn build
       - run: yarn keycloak
       - uses: actions/upload-artifact@v2
