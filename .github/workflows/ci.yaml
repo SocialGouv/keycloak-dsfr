@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     if: github.event.head_commit.author.name != 'actions'
     steps:
       - uses: actions/checkout@v3
