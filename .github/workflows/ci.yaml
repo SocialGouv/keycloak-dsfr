@@ -46,6 +46,7 @@ jobs:
 
   update_changelog:
     runs-on: ubuntu-latest
+    needs: check_if_version_upgraded
     if: |
       github.event_name == 'push' &&
       needs.check_if_version_upgraded.outputs.is_upgraded_version == 'true'
