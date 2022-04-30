@@ -4063,14 +4063,6 @@ evt@2.0.0-beta.39:
     run-exclusive "^2.2.14"
     tsafe "^0.4.1"
 
-evt@^1.10.2:
-  version "1.10.2"
-  resolved "https://registry.yarnpkg.com/evt/-/evt-1.10.2.tgz#6e898fac83f69a29e7f0f1116d2366c4570c1646"
-  integrity sha512-XCDyUOHzmugP8Qf4N7mvMw/4ribDf9OIZRl61+ZhoXXP9sUBlDAb29g5k7txonpBJsKlPi3F1hue7uSVX3/IAQ==
-  dependencies:
-    minimal-polyfills "^2.1.5"
-    run-exclusive "^2.2.14"
-
 execa@^5.0.0:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/execa/-/execa-5.1.1.tgz#f80ad9cbf4298f7bd1d4c9555c21e93741c411dd"
