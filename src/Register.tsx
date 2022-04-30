@@ -1,7 +1,7 @@
 import { memo } from "react";
-import { KcProps, Template, useKcMessage } from "keycloakify";
+import { KcProps, useKcMessage } from "keycloakify";
 import type { KcContext } from "./kcContext";
-// import { Template } from "./Template";
+import { Template } from "./Template";
 
 type KcContext_Register = Extract<KcContext, { pageId: "register.ftl" }>;
 
