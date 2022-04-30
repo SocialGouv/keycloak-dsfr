@@ -1,7 +1,7 @@
 {
   "name": "keycloak-dsfr",
-  "version": "0.1.0",
-  "description": "Keycloakify DSFR",
+  "version": "1.0.0",
+  "description": "Keycloak theme for @gouv/dsfr",
   "repository": {
     "type": "git",
     "url": "git://github.com/SocialGouv/keycloak-dsfr.git"
