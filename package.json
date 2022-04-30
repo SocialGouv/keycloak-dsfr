@@ -7,7 +7,7 @@
     "url": "git://github.com/SocialGouv/keycloak-dsfr.git"
   },
   "scripts": {
-    "build": "react-scripts build",
+    "build": "if-node-version '>= 17' && react-scripts --openssl-legacy-provider build || react-scripts build",
     "keycloak": "yarn build && build-keycloak-theme",
     "start": "react-scripts start",
     "test": "react-scripts test",
