@@ -1,3 +1,29 @@
+### **1.0.2** (2022-05-06)  
+  
+- fix: version  
+- Merge pull request #10 from SocialGouv/renovate/react-scripts-5.x  
+- Merge pull request #21 from SocialGouv/renovate/react-18.x  
+- Merge pull request #24 from SocialGouv/renovate/major-react-monorepo  
+- Merge pull request #17 from SocialGouv/renovate/actions-download-artifact-3.x  
+- Merge pull request #13 from SocialGouv/renovate/actions-checkout-3.x  
+- chore(deps): update dependency @types/react to v18  
+- chore(deps): update dependency react-scripts to v5.0.1  
+- Merge pull request #12 from SocialGouv/renovate/garronej-github_actions_toolkit-2.x  
+- fix(deps): update react monorepo to v18  
+- Merge pull request #19 from SocialGouv/renovate/actions-upload-artifact-3.x  
+- Merge pull request #22 from SocialGouv/renovate/react-dom-18.x  
+- Merge pull request #20 from SocialGouv/renovate/node-16.x  
+- Merge pull request #18 from SocialGouv/renovate/actions-setup-node-3.x  
+- chore(deps): update dependency @types/react-dom to v18  
+- chore(deps): update dependency @types/node to v16  
+- chore(deps): update actions/upload-artifact action to v3  
+- chore(deps): update actions/setup-node action to v3  
+- chore(deps): update actions/download-artifact action to v3  
+- chore(deps): update actions/checkout action to v3  
+- chore(deps): update garronej/github_actions_toolkit action to v2.4  
+- fix: doc  
+- fix: doc    
+  
 ### **0.2.13** (2021-04-11)  
   
 - Sync with latest version  
