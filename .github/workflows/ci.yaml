@@ -21,11 +21,11 @@ jobs:
       - uses: bahmutov/npm-install@v1
       - run: yarn build
       - run: yarn keycloak
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: keycloak_theme
           path: build_keycloak/target/*keycloak-theme*.jar
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: build
           path: build
