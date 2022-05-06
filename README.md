@@ -8,7 +8,7 @@ This template has been made thanks to [keycloakify](https://github.com/InseeFrLa
 
 The theme is generated from the CI build. You can find the latest version [here](https://github.com/SocialGouv/keycloak-dsfr/releases/latest/download/keycloak-theme.jar). Otherwise, you can download the theme manually from the [repository](https://github.com/SocialGouv/keycloak-dsfr/releases).
 
-## Run code locally
+## Run the code locally
 
 Firstly, you have to clone the repository.
 
@@ -49,11 +49,13 @@ export const { kcContext } = getKcContext<
 });
 ```
 
-You just have to uncomment `mockPageId`, Now you can run the code locally :
+You just have to uncomment `mockPageId`, now you can run the code locally :
 
 ```sh
 yarn start
 ```
+
+## Add a new page to the theme
 
 If you want to override the default theme, you have to override `src/KcApp.tsx`, by adding your components in the `switch` statement.
 
@@ -68,9 +70,19 @@ switch (kcContext.pageId) {
 }
 ```
 
-To build and generate the theme, you need to run `yarn keycloak`. You will find the build in the `./build_keycloak/target` folder. You also will find different way to test it in the output of the command.
+To build and generate the theme, you need to run :
+
+```sh
+yarn keycloak
+```
+
+You will find the build in the `./build_keycloak/target` folder. You also will find different way to test it in the output of the command.
+
+Don't forget to comment `mockPageId` in `src/kcContext.ts` if you build the project.
 
 ## Add the theme to your keycloak instance
+
+You just have to had it to your manifest file.
 
 ```yaml
 value.yaml:
