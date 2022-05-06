@@ -1823,10 +1823,10 @@
   resolved "https://registry.yarnpkg.com/@types/q/-/q-1.5.5.tgz#75a2a8e7d8ab4b230414505d92335d1dcb53a6df"
   integrity sha512-L28j2FcJfSZOnL1WBjDYp2vUHCeIFlyYI/53EwD/rKUBQ7MtUUfbQWiyKJGpcnv4/WgrhWsFKrcPstcAt/J0tQ==
 
-"@types/react-dom@^17.0.0":
-  version "17.0.11"
-  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-17.0.11.tgz#e1eadc3c5e86bdb5f7684e00274ae228e7bcc466"
-  integrity sha512-f96K3k+24RaLGVu/Y2Ng3e1EbZ8/cVJvypZWd7cy0ofCBaf2lcM46xNhycMZ2xGwbBjRql7hOlZ+e2WlJ5MH3Q==
+"@types/react-dom@^18.0.0":
+  version "18.0.3"
+  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-18.0.3.tgz#a022ea08c75a476fe5e96b675c3e673363853831"
+  integrity sha512-1RRW9kst+67gveJRYPxGmVy8eVJ05O43hg77G2j5m76/RFJtMbcfAs2viQ2UNsvvDg8F7OfQZx8qQcl6ymygaQ==
   dependencies:
     "@types/react" "*"
 
@@ -8466,16 +8466,7 @@ tslib@^2.0.3, tslib@^2.2.0:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.3.1.tgz#e8a335add5ceae51aa261d32a490158ef042ef01"
   integrity sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw==
 
-tss-react@^3.5.2:
-  version "3.5.2"
-  resolved "https://registry.yarnpkg.com/tss-react/-/tss-react-3.5.2.tgz#1b5db1f4a71fe62c939eed5368ea7809ca2ad0a9"
-  integrity sha512-IgGizaOhbntrWdh2EISJYnhYEEWXXWf3sn5aa8LYf7e59NCM5mg0PxJuEoLx9pLG5WlJF80zTRN/Y1Jnjw9LYA==
-  dependencies:
-    "@emotion/cache" "*"
-    "@emotion/serialize" "*"
-    "@emotion/utils" "*"
-
-tss-react@^3.6.0:
+tss-react@^3.5.2, tss-react@^3.6.0:
   version "3.6.0"
   resolved "https://registry.yarnpkg.com/tss-react/-/tss-react-3.6.0.tgz#22b58a65a1390507891d6b9ac95f58d22c5cd666"
   integrity sha512-mtQ8VL0btMVZZtax5gwaGU+jSBdKtbYMLVCLGB26Bi+BcOI0GQ6GTn1EaeK1nSgN5qbe6FL0zEOC6qoY+8+MEg==
