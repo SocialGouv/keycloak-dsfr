@@ -1,6 +1,6 @@
 {
   "name": "keycloak-dsfr",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Keycloak theme for @gouv/dsfr",
   "repository": {
     "type": "git",
