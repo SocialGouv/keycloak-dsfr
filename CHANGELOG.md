@@ -1,3 +1,8 @@
+## **1.1.0** (2022-06-03)  
+  
+- fix: version  
+- feat: add france connect 🇫🇷    
+  
 ### **1.0.2** (2022-05-06)  
   
 - fix: version  
