@@ -153,7 +153,7 @@ export const Login = memo(
                   />
                   <button
                     type="submit"
-                    className="fr-btn"
+                    className="fr-btn fr-btn--lg"
                     disabled={isLoginButtonDisabled}
                   >
                     {msgStr("doLogIn")}
@@ -163,33 +163,62 @@ export const Login = memo(
             )}
 
             {realm.password && social.providers !== undefined && (
-              <div
-                id="kc-social-providers"
-                className={cx(
-                  props.kcFormSocialAccountContentClass,
-                  props.kcFormSocialAccountClass
-                )}
-              >
-                <ul
-                  className={cx(
-                    props.kcFormSocialAccountListClass,
-                    social.providers.length > 4 &&
-                      props.kcFormSocialAccountDoubleListClass
-                  )}
-                >
+              <div id="kc-social-providers" className="fr-mt-3w">
+                <ul>
                   {social.providers.map(p => (
-                    <li
-                      key={p.providerId}
-                      className={cx(props.kcFormSocialAccountListLinkClass)}
-                    >
-                      <a
-                        href={p.loginUrl}
-                        id={`zocial-${p.alias}`}
-                        className={cx("zocial", p.providerId)}
-                      >
-                        <span>{p.displayName}</span>
-                      </a>
-                    </li>
+                    <>
+                      {p.providerId === "franceconnect-particulier" ? (
+                        <div
+                          className="fr-connect-group"
+                          key={p.providerId}
+                          style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            alignContent: "center",
+                          }}
+                        >
+                          <button
+                            className="fr-connect"
+                            onClick={() => {
+                              window.location.href = p.loginUrl;
+                            }}
+                            style={{ height: "inherit" }}
+                          >
+                            <span className="fr-connect__login">
+                              S’identifier avec
+                            </span>
+                            <span className="fr-connect__brand">
+                              FranceConnect
+                            </span>
+                          </button>
+                          <p>
+                            <a
+                              href="https://franceconnect.gouv.fr/"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              title="Qu’est ce que FranceConnect ? - nouvelle fenêtre"
+                            >
+                              Qu’est ce que FranceConnect ?
+                            </a>
+                          </p>
+                        </div>
+                      ) : (
+                        <li key={p.providerId}>
+                          <a
+                            href={p.loginUrl}
+                            id={`zocial-${p.alias}`}
+                            className="fr-btn fr-icon-checkbox-circle-line fr-btn--icon-right fr-btn--secondary"
+                            style={{
+                              textDecoration: "none",
+                            }}
+                          >
+                            <span>{p.displayName}</span>
+                          </a>
+                        </li>
+                      )}
+                    </>
                   ))}
                 </ul>
               </div>
