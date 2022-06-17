@@ -18,7 +18,7 @@ export const Register = memo(
 
     const { msg, msgStr } = getMsg();
 
-    console.log(`TODO: Do something with ${kcContext.authorizedMailDomains}`);
+    //console.log(`TODO: Do something with ${kcContext.authorizedMailDomains}`);
 
     return (
       <Template
