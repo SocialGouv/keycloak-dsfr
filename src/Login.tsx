@@ -1,9 +1,9 @@
-import { useState, memo } from "react";
+import { useState, memo, Fragment } from "react";
 import { useConstCallback } from "powerhooks/useConstCallback";
 import type { FormEventHandler } from "react";
-import { KcContextBase, KcProps, useKcMessage } from "keycloakify";
-import { useCssAndCx } from "tss-react";
+import { KcContextBase, KcProps, getMsg } from "keycloakify";
 import { Template } from "./Template";
+
 
 export const Login = memo(
   ({ kcContext, ...props }: { kcContext: KcContextBase.Login } & KcProps) => {
@@ -17,11 +17,9 @@ export const Login = memo(
       registrationDisabled,
     } = kcContext;
 
-    const { msg, msgStr } = useKcMessage();
+    const { msg, msgStr } = getMsg(kcContext);
 
     const [isLoginButtonDisabled, setIsLoginButtonDisabled] = useState(false);
-
-    const { cx } = useCssAndCx();
 
     const onSubmit = useConstCallback<FormEventHandler<HTMLFormElement>>(e => {
       e.preventDefault();
@@ -166,7 +164,7 @@ export const Login = memo(
               <div id="kc-social-providers" className="fr-mt-3w">
                 <ul>
                   {social.providers.map(p => (
-                    <>
+                    <Fragment key={p.alias}>
                       {p.providerId === "franceconnect-particulier" ? (
                         <div
                           className="fr-connect-group"
@@ -218,7 +216,7 @@ export const Login = memo(
                           </a>
                         </li>
                       )}
-                    </>
+                    </Fragment>
                   ))}
                 </ul>
               </div>
