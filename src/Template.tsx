@@ -1,20 +1,15 @@
 import { useReducer, useEffect, memo } from "react";
 import type { ReactNode } from "react";
+import { getMsg, getCurrentKcLanguageTag, changeLocale, getTagLabel } from "keycloakify/lib/i18n";
+import type { KcLanguageTag } from "keycloakify/lib/i18n";
+import type { KcContextBase } from "keycloakify/lib/getKcContext/KcContextBase";
+import { assert } from "keycloakify/lib/tools/assert";
 import { useCallbackFactory } from "powerhooks/useCallbackFactory";
-import { useConstCallback } from "powerhooks/useConstCallback";
-import { useCssAndCx } from "tss-react";
-import {
-  KcContextBase,
-  KcTemplateProps,
-  useKcMessage,
-  useKcLanguageTag,
-  KcLanguageTag,
-  assert,
-  getBestMatchAmongKcLanguageTag,
-  getKcLanguageTagLabel,
-} from "keycloakify";
-import { pathJoin } from "keycloakify/lib/tools/pathJoin";
 import { headInsert } from "keycloakify/lib/tools/headInsert";
+import { pathJoin } from "keycloakify/lib/tools/pathJoin";
+import { useConstCallback } from "powerhooks/useConstCallback";
+import type { KcTemplateProps } from "keycloakify/lib/components/KcProps";
+import { useCssAndCx } from "tss-react";
 
 export type TemplateProps = {
   displayInfo?: boolean;
@@ -49,53 +44,18 @@ export const Template = memo((props: TemplateProps) => {
 
   const { cx } = useCssAndCx();
 
-  useEffect(() => {
-    console.log("Rendering this page with react using keycloakify");
-  }, []);
+  const { msg } = getMsg(kcContext);
 
-  const { msg } = useKcMessage();
-
-  const { kcLanguageTag, setKcLanguageTag } = useKcLanguageTag();
-
-  const onChangeLanguageClickFactory = useCallbackFactory(
-    ([languageTag]: [KcLanguageTag]) => setKcLanguageTag(languageTag)
+  const onChangeLanguageClickFactory = useCallbackFactory(([kcLanguageTag]: [KcLanguageTag]) =>
+    changeLocale({
+      kcContext,
+      kcLanguageTag,
+    }),
   );
 
-  const onTryAnotherWayClick = useConstCallback(
-    () => (
-      document.forms["kc-select-try-another-way-form" as never].submit(), false
-    )
-  );
+  const onTryAnotherWayClick = useConstCallback(() => (document.forms["kc-select-try-another-way-form" as never].submit(), false));
 
   const { realm, locale, auth, url, message, isAppInitiatedAction } = kcContext;
-
-  useEffect(() => {
-    if (!realm.internationalizationEnabled) {
-      return;
-    }
-
-    assert(locale !== undefined);
-
-    const kcContext_kcLanguageTag = getBestMatchAmongKcLanguageTag(
-      locale.current
-    );
-
-    if (
-      ["error.ftl", "info.ftl", "login-page-expired.ftl"].indexOf(
-        kcContext.pageId
-      ) >= 0
-    ) {
-      setKcLanguageTag(kcContext_kcLanguageTag);
-
-      return;
-    }
-
-    if (kcLanguageTag !== kcContext_kcLanguageTag) {
-      window.location.href = locale.supported.find(
-        ({ languageTag }) => languageTag === kcLanguageTag
-      )!.url;
-    }
-  }, [kcLanguageTag]);
 
   const [isExtraCssLoaded, setExtraCssLoaded] = useReducer(() => true, false);
 
@@ -108,26 +68,21 @@ export const Template = memo((props: TemplateProps) => {
     let isUnmounted = false;
     const cleanups: (() => void)[] = [];
 
-    const toArr = (x: string | readonly string[] | undefined) =>
-      typeof x === "string" ? x.split(" ") : x ?? [];
+    const toArr = (x: string | readonly string[] | undefined) => (typeof x === "string" ? x.split(" ") : x ?? []);
 
     Promise.all(
       [
-        ...toArr(props.stylesCommon).map(relativePath =>
-          pathJoin(url.resourcesCommonPath, relativePath)
-        ),
-        ...toArr(props.styles).map(relativePath =>
-          pathJoin(url.resourcesPath, relativePath)
-        ),
+        ...toArr(props.stylesCommon).map(relativePath => pathJoin(url.resourcesCommonPath, relativePath)),
+        ...toArr(props.styles).map(relativePath => pathJoin(url.resourcesPath, relativePath)),
       ]
         .reverse()
         .map(href =>
           headInsert({
-            type: "css",
+            "type": "css",
             href,
-            position: "prepend",
-          })
-        )
+            "position": "prepend",
+          }),
+        ),
     ).then(() => {
       if (isUnmounted) {
         return;
@@ -138,9 +93,9 @@ export const Template = memo((props: TemplateProps) => {
 
     toArr(props.scripts).forEach(relativePath =>
       headInsert({
-        type: "javascript",
-        src: pathJoin(url.resourcesPath, relativePath),
-      })
+        "type": "javascript",
+        "src": pathJoin(url.resourcesPath, relativePath),
+      }),
     );
 
     if (props.kcHtmlClass !== undefined) {
@@ -189,7 +144,7 @@ export const Template = memo((props: TemplateProps) => {
                 >
                   <div className="kc-dropdown" id="kc-locale-dropdown">
                     <a href="#" id="kc-current-locale-link">
-                      {getKcLanguageTagLabel(kcLanguageTag)}
+                      {getTagLabel({ "kcLanguageTag": getCurrentKcLanguageTag(kcContext), kcContext })}
                     </a>
                     <ul>
                       {locale.supported.map(({ languageTag }) => (
@@ -198,7 +153,7 @@ export const Template = memo((props: TemplateProps) => {
                             href="#"
                             onClick={onChangeLanguageClickFactory(languageTag)}
                           >
-                            {getKcLanguageTagLabel(languageTag)}
+                            {getTagLabel({ "kcLanguageTag": languageTag, kcContext })}
                           </a>
                         </li>
                       ))}
