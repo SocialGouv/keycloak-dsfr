@@ -29,8 +29,6 @@ export const KcApp = memo((props: Props) => {
       return <Login {...{ kcContext, ...kcProps }} />;
     case "logout-confirm.ftl":
       return <LogoutConfirm {...{ kcContext, ...kcProps }} />;
-
-    //  return <LogoutConfirm {...{ kcContext, ...kcProps }} />;
     case "register.ftl":
       return <Register {...{ kcContext, ...kcProps }} />;
     default:
