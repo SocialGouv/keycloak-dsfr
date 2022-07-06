@@ -1,8 +1,4 @@
-import "minimal-polyfills/Object.fromEntries";
 import { getKcContext } from "keycloakify";
-import { kcMessages } from "keycloakify";
-import type { KcLanguageTag } from "keycloakify";
-import { id } from "tsafe/id";
 
 export const { kcContext } = getKcContext<
   | {
