@@ -1,6 +1,11 @@
 import { useReducer, useEffect, memo } from "react";
 import type { ReactNode } from "react";
-import { getMsg, getCurrentKcLanguageTag, changeLocale, getTagLabel } from "keycloakify/lib/i18n";
+import {
+  getMsg,
+  getCurrentKcLanguageTag,
+  changeLocale,
+  getTagLabel,
+} from "keycloakify/lib/i18n";
 import type { KcLanguageTag } from "keycloakify/lib/i18n";
 import type { KcContextBase } from "keycloakify/lib/getKcContext/KcContextBase";
 import { assert } from "keycloakify/lib/tools/assert";
@@ -46,14 +51,19 @@ export const Template = memo((props: TemplateProps) => {
 
   const { msg } = getMsg(kcContext);
 
-  const onChangeLanguageClickFactory = useCallbackFactory(([kcLanguageTag]: [KcLanguageTag]) =>
-    changeLocale({
-      kcContext,
-      kcLanguageTag,
-    }),
+  const onChangeLanguageClickFactory = useCallbackFactory(
+    ([kcLanguageTag]: [KcLanguageTag]) =>
+      changeLocale({
+        kcContext,
+        kcLanguageTag,
+      })
   );
 
-  const onTryAnotherWayClick = useConstCallback(() => (document.forms["kc-select-try-another-way-form" as never].submit(), false));
+  const onTryAnotherWayClick = useConstCallback(
+    () => (
+      document.forms["kc-select-try-another-way-form" as never].submit(), false
+    )
+  );
 
   const { realm, locale, auth, url, message, isAppInitiatedAction } = kcContext;
 
@@ -68,21 +78,26 @@ export const Template = memo((props: TemplateProps) => {
     let isUnmounted = false;
     const cleanups: (() => void)[] = [];
 
-    const toArr = (x: string | readonly string[] | undefined) => (typeof x === "string" ? x.split(" ") : x ?? []);
+    const toArr = (x: string | readonly string[] | undefined) =>
+      typeof x === "string" ? x.split(" ") : x ?? [];
 
     Promise.all(
       [
-        ...toArr(props.stylesCommon).map(relativePath => pathJoin(url.resourcesCommonPath, relativePath)),
-        ...toArr(props.styles).map(relativePath => pathJoin(url.resourcesPath, relativePath)),
+        ...toArr(props.stylesCommon).map((relativePath) =>
+          pathJoin(url.resourcesCommonPath, relativePath)
+        ),
+        ...toArr(props.styles).map((relativePath) =>
+          pathJoin(url.resourcesPath, relativePath)
+        ),
       ]
         .reverse()
-        .map(href =>
+        .map((href) =>
           headInsert({
-            "type": "css",
+            type: "css",
             href,
-            "position": "prepend",
-          }),
-        ),
+            position: "prepend",
+          })
+        )
     ).then(() => {
       if (isUnmounted) {
         return;
@@ -91,11 +106,11 @@ export const Template = memo((props: TemplateProps) => {
       setExtraCssLoaded();
     });
 
-    toArr(props.scripts).forEach(relativePath =>
+    toArr(props.scripts).forEach((relativePath) =>
       headInsert({
-        "type": "javascript",
-        "src": pathJoin(url.resourcesPath, relativePath),
-      }),
+        type: "javascript",
+        src: pathJoin(url.resourcesPath, relativePath),
+      })
     );
 
     if (props.kcHtmlClass !== undefined) {
@@ -111,7 +126,7 @@ export const Template = memo((props: TemplateProps) => {
     return () => {
       isUnmounted = true;
 
-      cleanups.forEach(f => f());
+      cleanups.forEach((f) => f());
     };
   }, [props.kcHtmlClass]);
 
@@ -144,7 +159,10 @@ export const Template = memo((props: TemplateProps) => {
                 >
                   <div className="kc-dropdown" id="kc-locale-dropdown">
                     <a href="#" id="kc-current-locale-link">
-                      {getTagLabel({ "kcLanguageTag": getCurrentKcLanguageTag(kcContext), kcContext })}
+                      {getTagLabel({
+                        kcLanguageTag: getCurrentKcLanguageTag(kcContext),
+                        kcContext,
+                      })}
                     </a>
                     <ul>
                       {locale.supported.map(({ languageTag }) => (
@@ -153,7 +171,10 @@ export const Template = memo((props: TemplateProps) => {
                             href="#"
                             onClick={onChangeLanguageClickFactory(languageTag)}
                           >
-                            {getTagLabel({ "kcLanguageTag": languageTag, kcContext })}
+                            {getTagLabel({
+                              kcLanguageTag: languageTag,
+                              kcContext,
+                            })}
                           </a>
                         </li>
                       ))}

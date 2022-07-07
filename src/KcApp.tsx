@@ -1,9 +1,9 @@
 import { memo } from "react";
 import type { KcContext } from "./kcContext";
-import { defaultKcProps } from "keycloakify";
+import { KcApp as KcAppBase, defaultKcProps } from "keycloakify";
 import { Login } from "./Login";
+import { LogoutConfirm } from "./LogoutConfirm";
 import { Register } from "./Register";
-import { KcApp as KcAppBase } from "keycloakify/lib/components/KcApp";
 import { makeStyles } from "makeStyles";
 
 export type Props = {
@@ -24,10 +24,11 @@ export const KcApp = memo((props: Props) => {
       classes.kcFormCardClass,
     ],
   };
-
   switch (kcContext.pageId) {
     case "login.ftl":
       return <Login {...{ kcContext, ...kcProps }} />;
+    case "logout-confirm.ftl":
+      return <LogoutConfirm {...{ kcContext, ...kcProps }} />;
     case "register.ftl":
       return <Register {...{ kcContext, ...kcProps }} />;
     default:
@@ -35,7 +36,7 @@ export const KcApp = memo((props: Props) => {
   }
 });
 
-const useStyles = makeStyles({ name: { KcApp } })(theme => ({
+const useStyles = makeStyles({ name: { KcApp } })((theme) => ({
   kcLoginClass: {
     "& #kc-locale": {
       zIndex: 5,

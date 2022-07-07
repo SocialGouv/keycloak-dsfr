@@ -16,9 +16,9 @@ export const Register = memo(
       recaptchaSiteKey,
     } = kcContext;
 
-    const { msg, msgStr } = getMsg();
+    const { msg, msgStr } = getMsg(kcContext);
 
-    console.log(`TODO: Do something with ${kcContext.authorizedMailDomains}`);
+    //console.log(`TODO: Do something with ${kcContext.authorizedMailDomains}`);
 
     return (
       <Template

@@ -4,7 +4,6 @@ import type { FormEventHandler } from "react";
 import { KcContextBase, KcProps, getMsg } from "keycloakify";
 import { Template } from "./Template";
 
-
 export const Login = memo(
   ({ kcContext, ...props }: { kcContext: KcContextBase.Login } & KcProps) => {
     const {
@@ -17,25 +16,27 @@ export const Login = memo(
       registrationDisabled,
     } = kcContext;
 
-    const { msg, msgStr } = getMsg(kcContext);
-
     const [isLoginButtonDisabled, setIsLoginButtonDisabled] = useState(false);
 
-    const onSubmit = useConstCallback<FormEventHandler<HTMLFormElement>>(e => {
-      e.preventDefault();
+    const { msg, msgStr } = getMsg(kcContext);
 
-      setIsLoginButtonDisabled(true);
+    const onSubmit = useConstCallback<FormEventHandler<HTMLFormElement>>(
+      (e) => {
+        e.preventDefault();
 
-      const formElement = e.target as HTMLFormElement;
+        setIsLoginButtonDisabled(true);
 
-      //NOTE: Even if we login with email Keycloak expect username and password in
-      //the POST request.
-      formElement
-        .querySelector("input[name='email']")
-        ?.setAttribute("name", "username");
+        const formElement = e.target as HTMLFormElement;
 
-      formElement.submit();
-    });
+        //NOTE: Even if we login with email Keycloak expect username and password in
+        //the POST request.
+        formElement
+          .querySelector("input[name='email']")
+          ?.setAttribute("name", "username");
+
+        formElement.submit();
+      }
+    );
 
     return (
       <Template
@@ -163,7 +164,7 @@ export const Login = memo(
             {realm.password && social.providers !== undefined && (
               <div id="kc-social-providers" className="fr-mt-3w">
                 <ul>
-                  {social.providers.map(p => (
+                  {social.providers.map((p) => (
                     <Fragment key={p.alias}>
                       {p.providerId === "franceconnect-particulier" ? (
                         <div
