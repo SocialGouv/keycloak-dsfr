@@ -19,7 +19,7 @@
   "dependencies": {
     "@emotion/react": "^11.7.0",
     "@gouvfr/dsfr": "^1.5.0",
-    "keycloakify": "^5.4.7",
+    "keycloakify": "^5.7.0",
     "powerhooks": "^0.20.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
