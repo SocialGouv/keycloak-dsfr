@@ -1,5 +1,24 @@
 # keycloak-dsfr
 
+
+## :warning: UPDATE:
+
+A more recent KeyCloak-DSFR is provided by [the SILL](https://sill.etalab.gouv.fr/).
+
+You can download it here: https://github.com/codegouvfr/sill-web/releases/latest/download/keycloak-theme.jar  
+
+And you can find a [step by step guide](https://etalab-2.gitbook.io/sill/deploying#installing-keycloak)  
+
+<a href="https://youtu.be/PmxyMvheOnc">
+  <img width="1712" alt="image" src="https://user-images.githubusercontent.com/6702424/224423044-c1823249-eab6-4844-af43-d059c01416af.png">
+</a>
+
+---
+
+---
+
+---
+
 This template has been made thanks to [keycloakify](https://github.com/InseeFrLab/keycloakify). It follows the french design system [Système de Design de l'État](https://www.systeme-de-design.gouv.fr/). You can find guideline [here](https://gouvfr.atlassian.net/wiki/spaces/DB/overview?homepageId=145359476).
 
 :warning: Before digging into the code, please read [keycloakify documentation](https://www.keycloakify.dev/).
@@ -110,7 +129,4 @@ value.yaml:
     - name: JAVA_OPTS
       value: -Dkeycloak.profile=preview
 ```
-> There is also the Keycloak theme of the SILL that exists and that you can use
-> - [Video demo](https://youtu.be/PmxyMvheOnc)
-> - [The .jar](https://github.com/codegouvfr/sill-web/releases/latest/download/keycloak-theme.jar)
-> - [Step by step instructions](https://etalab-2.gitbook.io/sill/deploying#installing-keycloak)
+
