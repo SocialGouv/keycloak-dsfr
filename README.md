@@ -110,3 +110,7 @@ value.yaml:
     - name: JAVA_OPTS
       value: -Dkeycloak.profile=preview
 ```
+> There is also the Keycloak theme of the SILL that exists and that you can use
+> - [Video demo](https://youtu.be/PmxyMvheOnc)
+> - [The .jar](https://github.com/codegouvfr/sill-web/releases/latest/download/keycloak-theme.jar)
+> - [Step by step instructions](https://etalab-2.gitbook.io/sill/deploying#installing-keycloak)
