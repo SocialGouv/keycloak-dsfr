@@ -5,9 +5,7 @@
 
 A more recent KeyCloak-DSFR is provided by [the SILL](https://sill.etalab.gouv.fr/).
 
-You can download it here: https://github.com/codegouvfr/sill-web/releases/latest/download/keycloak-theme.jar  
-
-And you can find a [step by step guide](https://etalab-2.gitbook.io/sill/deploying#installing-keycloak)  
+You can download it here: https://github.com/codegouvfr/keycloak-theme-dsfr
 
 <a href="https://youtu.be/PmxyMvheOnc">
   <img width="1712" alt="image" src="https://user-images.githubusercontent.com/6702424/224423044-c1823249-eab6-4844-af43-d059c01416af.png">
